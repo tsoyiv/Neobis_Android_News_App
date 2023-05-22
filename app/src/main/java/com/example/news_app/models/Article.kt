@@ -3,9 +3,7 @@ package com.example.news_app.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(
-    tableName = "articles"
-)
+@Entity (tableName = "articles")
 data class Article(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,

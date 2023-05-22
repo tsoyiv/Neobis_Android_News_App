@@ -8,7 +8,7 @@ apply plugin: "androidx.navigation.safeargs"
 
 
 android {
-    namespace 'com.example.news_app'
+    //namespace 'com.example.news_app'
     compileSdk 33
 
     defaultConfig {
