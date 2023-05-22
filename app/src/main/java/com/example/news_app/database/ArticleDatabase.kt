@@ -1,11 +1,11 @@
-package com.example.news_app.Database
+package com.example.news_app.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.news_app.Models.Article
+import com.example.news_app.models.Article
 
 @Database(
     entities = [Article::class],

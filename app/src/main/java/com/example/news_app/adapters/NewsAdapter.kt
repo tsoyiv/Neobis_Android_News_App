@@ -3,13 +3,11 @@ package com.example.news_app.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.news_app.Models.Article
+import com.example.news_app.models.Article
 import com.example.news_app.R
 import kotlinx.android.synthetic.main.item_news.view.*
 

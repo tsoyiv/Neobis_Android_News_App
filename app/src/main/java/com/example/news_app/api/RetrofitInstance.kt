@@ -3,7 +3,7 @@ package com.example.news_app.api
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import com.example.news_app.Util.Constants.Companion.BASE_URL
+import com.example.news_app.util.Constants.Companion.BASE_URL
 import retrofit2.converter.gson.GsonConverterFactory
 
 

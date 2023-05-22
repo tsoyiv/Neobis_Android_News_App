@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.news_app.R
+import com.example.news_app.databinding.FragmentMainBinding
+import com.example.news_app.ui.MainActivity
+import com.example.news_app.ui.view_models.NewsViewModel
 
 class MainFragment : Fragment() {
+
+    private lateinit var binding: FragmentMainBinding
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -17,4 +23,8 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
+    }
 }
