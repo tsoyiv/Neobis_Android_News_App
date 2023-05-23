@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news_app.R
 import com.example.news_app.adapters.NewsAdapter
@@ -15,6 +16,7 @@ import com.example.news_app.ui.MainActivity
 import com.example.news_app.ui.view_models.NewsViewModel
 import com.example.news_app.util.Resource
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment() {
 
@@ -28,7 +30,12 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        view.fav_button_main.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_favFragment)
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
