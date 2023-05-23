@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,15 +36,19 @@ class MainFragment : Fragment() {
         view.fav_button_main.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_favFragment)
         }
+        view.refresh_button_main.setOnClickListener {
+            showProgressBar()
+            viewModel.updatePage()
+        }
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-         super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
+            when (response) {
                 is Resource.Success -> {
                     hideProgressbar()
                     response.data?.let { newsResponse ->
@@ -62,14 +67,16 @@ class MainFragment : Fragment() {
                 else -> {}
             }
         })
-
+        val searchView = view.findViewById<SearchView>(R.id.search_view)
+        searchView.queryHint = "Поиск"
     }
 
     private fun hideProgressbar() {
         progressBar_main.visibility = View.INVISIBLE
     }
+
     private fun showProgressBar() {
-        progressBar_main.visibility  = View.VISIBLE
+        progressBar_main.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView() {
