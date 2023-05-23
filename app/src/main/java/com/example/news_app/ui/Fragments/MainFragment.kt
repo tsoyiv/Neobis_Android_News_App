@@ -47,6 +47,14 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+             val bundle = Bundle().apply {
+                 putSerializable("article", it)
+             }
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment, bundle)
+        }
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {

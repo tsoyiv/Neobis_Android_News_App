@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_descriptionFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="article"
+            app:argType="com.example.news_app.models.Article" />
     </fragment>
     <fragment
         android:id="@+id/favFragment"
@@ -35,5 +38,8 @@
         <action
             android:id="@+id/action_favFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_favFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
 </navigation>
