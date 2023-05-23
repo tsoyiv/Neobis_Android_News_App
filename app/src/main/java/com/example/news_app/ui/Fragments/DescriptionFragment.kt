@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -16,6 +18,9 @@ import com.example.news_app.R
 import com.example.news_app.models.Article
 import com.example.news_app.ui.MainActivity
 import com.example.news_app.ui.view_models.NewsViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_description.*
 import kotlinx.android.synthetic.main.fragment_description.view.*
 
 
@@ -56,5 +61,20 @@ class DescriptionFragment : Fragment() {
         txt_description.text = article.description
         txt_context.text = article.content
         img_news.load(article.urlToImage)
+
+//        val stopButton: FloatingActionButton = view.findViewById(R.id.saved_btn)
+//        val startButton: FloatingActionButton = view.findViewById(R.id.delete_btn)
+
+        saved_btn.setOnClickListener {
+            viewModel.saveArticle(article)
+            val myToast = Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT)
+            myToast.show()
+        }
+//        delete_btn.setOnClickListener {
+//            //viewModel.deleteArticle(article)
+//            Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
+//            startButton.setVisibility( View.VISIBLE );
+//            stopButton.setVisibility( View.GONE );
+//        }
     }
 }

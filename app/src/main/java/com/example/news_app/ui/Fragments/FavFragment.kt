@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news_app.R
@@ -50,8 +51,9 @@ class FavFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_favFragment_to_descriptionFragment, bundle)
         }
-
-
+        viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
+            newsAdapter.differ.submitList(articles)
+        })
     }
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.RequestManager
 import com.example.news_app.R
 import com.example.news_app.adapters.NewsAdapter
 import com.example.news_app.databinding.FragmentMainBinding
@@ -18,12 +19,14 @@ import com.example.news_app.ui.view_models.NewsViewModel
 import com.example.news_app.util.Resource
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.coroutines.Job
 
 class MainFragment : Fragment() {
 
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
     val TAG = "BreakingNewsFragment"
+    lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +57,21 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment, bundle)
         }
 
+        val searchView = view.findViewById<SearchView>(R.id.search_view_main)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            @Override
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return true
+            }
+
+            @Override
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -74,7 +92,6 @@ class MainFragment : Fragment() {
                 else -> {}
             }
         })
-        val searchView = view.findViewById<SearchView>(R.id.search_view_main)
         searchView.queryHint = "Поиск"
     }
 
