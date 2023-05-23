@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
                 else -> {}
             }
         })
-        val searchView = view.findViewById<SearchView>(R.id.search_view)
+        val searchView = view.findViewById<SearchView>(R.id.search_view_main)
         searchView.queryHint = "Поиск"
     }
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.example.news_app.R
 import com.example.news_app.databinding.FragmentMainBinding
@@ -34,5 +35,8 @@ class FavFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
+
+        val searchView = view.findViewById<SearchView>(R.id.search_view_saved)
+        searchView.queryHint = "Поиск"
     }
 }
