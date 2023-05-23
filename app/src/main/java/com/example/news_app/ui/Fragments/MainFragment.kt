@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
     val TAG = "BreakingNewsFragment"

@@ -23,7 +23,6 @@ class FavFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +50,8 @@ class FavFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_favFragment_to_descriptionFragment, bundle)
         }
+
+
     }
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
