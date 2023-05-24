@@ -2,6 +2,7 @@ package com.example.news_app.repository
 
 import androidx.room.Query
 import com.example.news_app.api.RetrofitInstance
+import com.example.news_app.database.ArticleDao
 import com.example.news_app.database.ArticleDatabase
 import com.example.news_app.models.Article
 import kotlinx.coroutines.Dispatchers
@@ -23,5 +24,10 @@ class NewsRepository(
 
     fun getSavedNews() = db.getArticleDao().getAllArticles()
 
-    suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
+    //suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
+    suspend fun deleteArticle(article: Article) {
+        withContext(Dispatchers.IO) {
+            db.getArticleDao().deleteArticle(article)
+        }
+    }
 }

@@ -20,4 +20,5 @@ interface ArticleDao {
 
     @Delete
     fun deleteArticle(article: Article)
+
 }

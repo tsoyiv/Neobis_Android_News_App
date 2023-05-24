@@ -4,10 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Query
+import com.example.news_app.database.ArticleDao
 import com.example.news_app.models.Article
 import com.example.news_app.models.NewsResponse
 import com.example.news_app.repository.NewsRepository
 import com.example.news_app.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -68,4 +70,5 @@ class NewsViewModel(
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
+
 }
