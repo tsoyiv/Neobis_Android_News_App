@@ -3,6 +3,7 @@ package com.example.news_app.ui.Fragments
 import android.content.Intent
 import android.content.Intent.getIntent
 import android.os.Bundle
+import android.text.BoringLayout
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -40,12 +42,13 @@ class DescriptionFragment : Fragment() {
     lateinit var txt_context: TextView
     lateinit var img_news: ImageView
     lateinit var newsAdapter: NewsAdapter
+    var isFavorite: Boolean = false
+    private val savedArticleIds = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_description, container, false)
 
         view.return_from_des.setOnClickListener {
@@ -70,16 +73,34 @@ class DescriptionFragment : Fragment() {
         txt_context.text = article.content
         img_news.load(article.urlToImage)
 
+        val articleId = article.url
+
+        if (savedArticleIds.contains(articleId)) {
+            already_saved_btn.visibility = View.VISIBLE
+            saved_btn.visibility = View.GONE
+        } else {
+            already_saved_btn.visibility = View.GONE
+            saved_btn.visibility = View.VISIBLE
+        }
 
         saved_btn.setOnClickListener {
-            viewModel.saveArticle(article)
-            Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT).show()
+            if (savedArticleIds.contains(articleId)) {
+                Toast.makeText(requireContext(), "Article already saved!", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.saveArticle(article)
+                Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT).show()
+                savedArticleIds.add(articleId)
+                already_saved_btn.visibility = View.VISIBLE
+                saved_btn.visibility = View.GONE
+            }
         }
-//        delete_btn.setOnClickListener {
-//            //viewModel.deleteArticle(article)
-//            Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
-//            startButton.setVisibility( View.VISIBLE );
-//            stopButton.setVisibility( View.GONE );
+
+
+//        saved_btn.setOnClickListener {
+//            viewModel.saveArticle(article)
+//            Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT).show()
+//            already_saved_btn.visibility = View.VISIBLE
+//            saved_btn.visibility = View.GONE
 //        }
     }
 }
