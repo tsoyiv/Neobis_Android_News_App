@@ -15,7 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
             <ImageView
                 android:id="@+id/return_from_des"
@@ -70,7 +70,7 @@
                 android:textColor="#A6A7A7"
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@+id/desc_title"
-                tools:layout_editor_absoluteX="68dp" />
+                />
 
             <ImageView
                 android:id="@+id/desc_image"

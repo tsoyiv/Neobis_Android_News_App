@@ -3,6 +3,8 @@ package com.example.news_app.ui.Fragments
 import android.content.Intent
 import android.content.Intent.getIntent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,13 +64,19 @@ class DescriptionFragment : Fragment() {
         txt_context.text = article.content
         img_news.load(article.urlToImage)
 
+//        txt_context = view.findViewById(R.id.desc_context)
+//        txt_context.text = article.content
+//        txt_context.maxLines = Integer.MAX_VALUE
+//        txt_context.ellipsize = null
+//        txt_context.isScrollContainer = true
+//        txt_context.setHorizontallyScrolling(false)
+//        txt_context.movementMethod = ScrollingMovementMethod()
 //        val stopButton: FloatingActionButton = view.findViewById(R.id.saved_btn)
 //        val startButton: FloatingActionButton = view.findViewById(R.id.delete_btn)
 
         saved_btn.setOnClickListener {
             viewModel.saveArticle(article)
-            val myToast = Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT)
-            myToast.show()
+            Toast.makeText(requireContext(), "Article saved!", Toast.LENGTH_SHORT).show()
         }
 //        delete_btn.setOnClickListener {
 //            //viewModel.deleteArticle(article)
